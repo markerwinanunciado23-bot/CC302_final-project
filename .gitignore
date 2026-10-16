@@ -32,6 +32,8 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+api/*.sqlite
+api/*.sqlite-*
 
 # Symbolication related
 app.*.symbols

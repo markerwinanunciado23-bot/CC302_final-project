@@ -1,0 +1,14 @@
+{
+  "name": "blue-way-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local REST API for Blue Way buses and bookings",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  }
+}
