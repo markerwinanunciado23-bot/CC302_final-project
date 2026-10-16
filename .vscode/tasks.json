@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Blue Way API",
+      "type": "process",
+      "command": "node",
+      "args": ["api/server.js"],
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "blue-way-api",
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".+",
+          "endsPattern": "Blue Way API listening on http://"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": false
+      }
+    }
+  ]
+}

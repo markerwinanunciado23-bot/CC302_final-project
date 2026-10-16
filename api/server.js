@@ -499,9 +499,27 @@ export async function createApiServer({ databasePath = defaultDatabasePath } = {
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const server = await createApiServer();
   const host = process.env.HOST ?? '0.0.0.0';
   const port = Number(process.env.PORT ?? 3000);
+  let alreadyRunning = false;
+
+  try {
+    const response = await fetch(`http://127.0.0.1:${port}/api/health`, {
+      signal: AbortSignal.timeout(500),
+    });
+    if (response.ok && (await response.json()).status === 'ok') {
+      alreadyRunning = true;
+    }
+  } catch {
+    // No healthy API is listening, so start one below.
+  }
+
+  if (alreadyRunning) {
+    console.log(`Blue Way API listening on http://localhost:${port} (already running)`);
+    process.exit(0);
+  }
+
+  const server = await createApiServer();
   server.listen(port, host, () => {
     console.log(`Blue Way API listening on http://${host}:${port}`);
     console.log(`SQLite database: ${process.env.DATABASE_PATH ?? defaultDatabasePath}`);

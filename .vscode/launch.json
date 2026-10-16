@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Blue Way (Chrome)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "preLaunchTask": "Start Blue Way API"
+    },
+    {
+      "name": "Blue Way (Android emulator)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "emulator-5554",
+      "preLaunchTask": "Start Blue Way API"
+    }
+  ]
+}

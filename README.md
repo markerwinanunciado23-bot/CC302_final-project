@@ -5,22 +5,64 @@ API with SQLite persistence. Bus routes and bookings are stored by the API;
 the bus fleet screen supports create, read, update, and delete, and My Tickets
 supports booking, viewing, editing, and deleting tickets.
 
+## Project structure
+
+The Flutter app is organized by responsibility under `lib/`:
+
+```text
+lib/
+  models/
+    blue_way_bus.dart
+    booking.dart
+  pages/
+    booking_page.dart
+    detail_page.dart
+    fleet_page.dart
+    home_page.dart
+    main_screen.dart
+    profile_page.dart
+    schedule_page.dart
+    tickets_page.dart
+  routes/
+    app_routes.dart
+  services/
+    blue_way_api.dart
+  main.dart
+```
+
+`lib/main.dart` is the app entry point and connects these files into one Dart
+library, keeping shared UI helpers and models compatible while separating the
+code into readable files.
+
 ## Run the API
 
-Install Node.js 22.13 or later. In one terminal:
+Install Node.js 22.13 or later and Flutter. The easiest option on Windows is
+to run `run.bat` from the project folder (or `.\run.bat` in PowerShell). It
+starts the API in a separate terminal, waits for its health check, fetches
+Flutter packages, and runs the app. Any arguments are passed to Flutter, e.g.
+`.\run.bat -d chrome`.
+
+In VS Code, open the project folder, choose **Blue Way (Chrome)** or
+**Blue Way (Android emulator)** in Run and Debug, then press **F5**. Those
+launch configurations start the API automatically before launching Flutter.
+
+To start the API manually, install Node.js 22.13 or later and run this in a
+terminal:
 
 ```powershell
-cd api
+cd api;
 npm start
 ```
 
 The API listens on port 3000 and creates `api/blueway.sqlite` on first start,
 seeding it with the sample Blue Way fleet. The database file is ignored by Git.
-To change the port, set the `PORT` environment variable before starting Node.
+Keep the API terminal open while using the app. To change the port, set the
+`PORT` environment variable before starting Node.
 
 ## Run the Flutter app
 
-In a second terminal at the project root:
+In a second terminal at the project root (only needed if you started the API
+manually):
 
 ```powershell
 flutter pub get
